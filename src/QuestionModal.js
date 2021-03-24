@@ -32,13 +32,14 @@ class QuestionModal extends Component {
 
     handleSave = async () => {
         await this.setState({
-            nameValueSetToSearch: [...this.state.nameValueSetToSearch, { itemName: this.props.item.name, itemValue: this.state.inputValue, itemDescription: this.state.choiceDescription }],
+            nameValueSetToSearch: [...this.state.nameValueSetToSearch, { itemName: this.props.item.name, itemValue: this.state.inputValue, itemDescription: this.state.choiceDescription, itemId: uuidv4() }],
             show: false,
             inputValue: '',
             choiceDescription: ''
         })
         let arr = this.state.nameValueSetToSearch;
         this.props.getDataArray(arr)
+
     }
 
     render() {

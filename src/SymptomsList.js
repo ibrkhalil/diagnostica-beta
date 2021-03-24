@@ -1,12 +1,17 @@
 import React from 'react'
-import { v4 as uuidv4 } from 'uuid';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 const SymptomsList = (props) => {
     return (
         <ul>
-            {props.dataArray.map(symptom => <li key={uuidv4()}>{symptom.itemName + ": " + (symptom.itemDescription ? (symptom.itemDescription) : symptom.itemValue)}</li>)}
+            {/* {console.log(props.dataArray)} */}
+            {props.dataArray.map(symptom => <li key={symptom.itemId}>{symptom.itemName + ": " + (symptom.itemDescription ? (symptom.itemDescription) : symptom.itemValue)} <FontAwesomeIcon onClick={() => props.handleDelete(symptom.itemId)} icon={faTimesCircle} /> </li>)}
         </ul>
     )
 }
 
+
+
 export default SymptomsList
+
+
