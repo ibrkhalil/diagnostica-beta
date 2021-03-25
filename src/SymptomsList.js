@@ -5,7 +5,7 @@ const SymptomsList = (props) => {
     return (
         <ul>
             {/* {console.log(props.dataArray)} */}
-            {props.dataArray.map(symptom => <li key={symptom.itemId}>{symptom.itemName + ": " + (symptom.itemDescription ? (symptom.itemDescription) : symptom.itemValue)} <FontAwesomeIcon onClick={() => props.handleDelete(symptom.itemId)} icon={faTimesCircle} /> </li>)}
+            {props.dataArray.map(symptom => <li key={symptom.itemId}>{symptom.itemName + ": " + (symptom.itemDescription ? (symptom.itemDescription) : symptom.itemValue)} <FontAwesomeIcon onClick={() => props.handleDelete(symptom)} icon={faTimesCircle} /> </li>)}
         </ul>
     )
 }

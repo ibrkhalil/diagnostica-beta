@@ -1,10 +1,12 @@
 import './App.css';
 import React, { Component } from 'react'
-// import axios from 'axios'
+import axios from 'axios'
 // import { TextField } from '@material-ui/core';
 // import { Autocomplete } from '@material-ui/lab';
 import features from './SymptomsOutput.json'
+import SymptomsToTestList from './SymptomsToTestList'
 // import { v4 as uuidv4 } from 'uuid';
+import DiseasesList from './DiseasesList'
 import Select from 'react-select'
 import SymptomsList from './SymptomsList'
 import QuestionModal from './QuestionModal'
@@ -27,25 +29,27 @@ class App extends Component {
     sessionId: '',
     inputValue: '',
     selectedFeature: '',
+    suggestedFeaturesToAsk: [],
     acceptedTerms: '',
+    DiseasesResult: [],
+    dataSentFlag: false,
     dataArr: [],
   }
 
+  async componentDidMount() {
+    const [SessionRes] = await Promise.all([
+      axios.get('http://api.endlessmedical.com/v1/dx/InitSession'),
+    ]);
+    const terms = `I have read, understood and I accept and agree to comply with the Terms of Use of EndlessMedicalAPI and Endless Medical services. The Terms of Use are available on endlessmedical.com`
+    const SessionID = SessionRes.data.SessionID
+    const acceptedTerms = await axios.post(`http://api.endlessmedical.com/v1/dx/AcceptTermsOfUse?SessionID=${SessionID}&passphrase=${terms}`)
+    // console.log(SessionID);
+    await this.setState({
+      sessionId: SessionID,
+      acceptedTerms: acceptedTerms.status
+    })
+  }
 
-  // async componentDidMount() {
-  //   const [SessionRes, features] = await Promise.all([
-  //     axios.get('http://api.endlessmedical.com/v1/dx/InitSession'),
-  //     axios.get(`http://api.endlessmedical.com/v1/dx/GetFeatures/`)
-  //   ]);
-  //   const terms = `I have read, understood and I accept and agree to comply with the Terms of Use of EndlessMedicalAPI and Endless Medical services. The Terms of Use are available on endlessmedical.com`
-  //   const SessionID = SessionRes.data.SessionID
-  //   const acceptedTerms = await axios.post(`http://api.endlessmedical.com/v1/dx/AcceptTermsOfUse?SessionID=${SessionID}&passphrase=${terms}`)
-  //   this.setState({
-  //     features: features.data.data,
-  //     sessionId: SessionID,
-  //     acceptedTerms: acceptedTerms.status
-  //   })
-  // }
   // start() {
   //   const featureTextArr = [], featureLayTextArr = [], featureNameArr = [], featureTypeArr = [], featureDefaultArr = []
   //   for (let i = 0; i < features.length; ++i) {
@@ -59,6 +63,26 @@ class App extends Component {
   // }
 
   render() {
+    this.sendFeaturesData = async () => {
+      //Sends Collected Symptoms to the API and logs Ok for each successfully sent symptom
+      await this.state.dataArr.map(feature => axios.post(`http://api.endlessmedical.com/v1/dx/UpdateFeature?SessionID=${this.state.sessionId}&name=${feature.itemName}&value=${feature.itemValue}`).then(res => console.log(res.data.status)))
+
+      this.setState({
+        dataSentFlag: true
+      })
+    }
+
+    this.analyze = async () => {
+      await axios.get(`http://api.endlessmedical.com/v1/dx/Analyze?SessionID=${this.state.sessionId}`).then(res => this.setState({ DiseasesResult: res.data.Diseases }))
+      console.log(this.state.DiseasesResult);
+    }
+
+    this.handleGetAdditionalTests = async () => {
+      //Getting Suggested Tests
+      await axios.get(`http://api.endlessmedical.com/v1/dx/GetSuggestedFeatures_PatientProvided?SessionID=${this.state.sessionId}`).then(res => this.setState({ suggestedFeaturesToAsk: res.data.SuggestedFeatures }))
+      console.log(this.state.suggestedFeaturesToAsk);
+    }
+
     this.handleChange = (selectedFeature) => {
       this.setState({
         selectedFeature: { ...selectedFeature }
@@ -72,13 +96,27 @@ class App extends Component {
       await this.setState({
         dataArr: uniqueArr
       })
-      console.log(this.state.dataArr);
+      // console.log(this.state.dataArr);
     }
-    this.handleDelete = async (id) => {
+    this.handleDelete = async (deletedSymptom) => {
       // console.log(id);
-      await this.setState({ dataArr: this.state.dataArr.filter(symptom => symptom.itemId !== id) })
-      console.log(this.state.dataArr);
+      await this.setState({ dataArr: this.state.dataArr.filter(symptom => symptom.itemId !== deletedSymptom.itemId) })
+      //Deletes item for API Session
+      await axios.post(`http://api.endlessmedical.com/v1/dx/DeleteFeature?SessionID=${this.state.sessionId}&name=${deletedSymptom.itemName}`).then(res => console.log(res.data.status))
 
+    }
+    this.reset = () => {
+      this.setState({
+        valuedFeatures: this.valuedFeatures,
+        sessionId: '',
+        inputValue: '',
+        selectedFeature: '',
+        suggestedFeaturesToAsk: [],
+        acceptedTerms: '',
+        DiseasesResult: [],
+        dataSentFlag: false,
+        dataArr: [],
+      })
     }
 
     return (
@@ -88,7 +126,12 @@ class App extends Component {
           <Select placeholder="Select from the following values ..." options={this.state.valuedFeatures} value={this.state.selectedFeature} onChange={this.handleChange} />
           {this.state.selectedFeature && <QuestionModal buttonLabel="Ask" item={this.state.selectedFeature} getDataArray={this.getDataArray} />}
           {this.state.dataArr && <SymptomsList handleDelete={this.handleDelete} dataArray={this.state.dataArr} />}
-          {this.state.dataArr[0] && <Button>Analyze</Button>}
+          {this.state.dataArr[0] && <Button onClick={this.sendFeaturesData}>Send Current Details</Button>}
+          {this.state.dataSentFlag && <Button onClick={this.handleGetAdditionalTests}>Get Additional Results</Button>}
+          {this.state.suggestedFeaturesToAsk && <SymptomsToTestList suggestedFeatures={this.state.suggestedFeaturesToAsk} />}
+          {this.state.dataSentFlag && <Button onClick={this.analyze}>Analyze</Button>}
+          {this.state.DiseasesResult && <DiseasesList diseasesList={this.state.DiseasesResult} />}
+          {this.state.DiseasesResult && this.state.suggestedFeaturesToAsk && this.state.dataSentFlag && <Button onClick={this.reset}>Reset</Button>}
         </Container>
       </div >
     )
