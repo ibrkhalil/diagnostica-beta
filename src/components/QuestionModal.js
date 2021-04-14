@@ -14,10 +14,11 @@ class QuestionModal extends Component {
         }
         this.wrapper = React.createRef()
     }
-    handleInputChange = (e) => {
-        this.setState({
+    handleInputChange = async (e) => {
+        await this.setState({
             inputValue: e.target.value
         })
+
     }
     handleClick = async (value, choiceDescription) => {
         await this.setState({
@@ -32,17 +33,18 @@ class QuestionModal extends Component {
 
     handleSave = async () => {
         await this.setState({
-            nameValueSetToSearch: [...this.state.nameValueSetToSearch, { itemName: this.props.item.name, itemValue: this.state.inputValue, itemDescription: this.state.choiceDescription, itemId: uuidv4() }],
+            nameValueSetToSearch: { itemName: this.props.item.name, itemValue: this.state.inputValue, itemDescription: this.state.choiceDescription, itemId: uuidv4() },
             show: false,
             inputValue: '',
             choiceDescription: ''
         })
-        let arr = this.state.nameValueSetToSearch;
-        this.props.getDataArray(arr)
+        let arrItem = this.state.nameValueSetToSearch;
+        this.props.getDataArray(arrItem)
 
     }
 
     render() {
+        // console.log(this.state.nameValueSetToSearch);
 
 
         const handleClose = () => { this.setState({ show: false, inputValue: '' }) }

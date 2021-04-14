@@ -6,6 +6,7 @@ const SymptomsList = (props) => {
         <ul>
             {/* {console.log(props.dataArray)} */}
             {props.dataArray.map(symptom => <li key={symptom.itemId}>{symptom.itemName + ": " + (symptom.itemDescription ? (symptom.itemDescription) : symptom.itemValue)} <FontAwesomeIcon onClick={() => props.handleDelete(symptom)} icon={faTimesCircle} /> </li>)}
+            {/* { props.dataArray = null} */}
         </ul>
     )
 }
