@@ -1,209 +1,212 @@
-        /* @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap'); */
-        
-        * {
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            box-sizing: border-box;
-        }
-        
-         :root {
-            --success-color: #2ecc71;
-            --error-color: #e74c3c;
-        }
-        
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        
-        html body {
-            /* overflow-y: hidden; */
-            margin: 0;
-            padding: 0;
-            background-color: rgb(240, 235, 235);
-            /* font-family: 'open sans', sans-serif; */
-            /* display: flex; */
-        }
-        .center{
-            display: flex;
-            
-            justify-content: center;
-            align-items: center;
-        }
-        .mt-rem-5{
-            margin-top: 5rem;
-        }
-        
-        body h1:first-child {
-            text-align: center;
-            /* color: cyan;  */
-        }
-        
-        body h3 {
-            text-align: center;
-            width: 280px;
-        }
-        
-        .loginForm {
-            position: absolute;
-            top: 50%;
-            transition: 0.5s;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            margin: auto;
-            /* height: 100vh; */
-            min-height: 100vh;
-            /* width: 70vh; */
-            padding: 10rem;
-            flex-direction: column;
-            justify-content: space-around;
-            align-items: center;
-            box-shadow: 5px 5px 35px blue;
-            background: rgb(2, 0, 36);
-            background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(9, 120, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
-        }
-        
-        .textInput {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-        
-        .textInput input {
-            transition: 0.3s;
-            margin: 2rem;
-            font-size: large;
-            border: 1px solid rgba(9, 120, 121, 1);
-            border-radius: 5px;
-            padding: 5px;
-            width: 100%;
-            color: rgb(59, 58, 58);
-        }
-        
-        .textInput input:focus {
-            /* color: red; */
-            /* background-color: aqua; */
-            color: gray;
-            padding: 10px;
-        }
-        
-        .btn {
-            transition: 0.66s;
-            padding: 0;
-            margin-top: 1rem;
-            text-decoration: none;
-            border: none;
-            /* color: white; */
-            background: none!important;
-        }
-        
-        .btn:hover {
-            cursor: pointer;
-            color: black;
-            padding: 10px;
-            border-radius: 7px;
-            background: white!important;
-        }
-        
-        .loginFormbuttons {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .social {
-            margin-top: 20px;
-        }
-        
-        .social ul {
-            display: flex;
-            list-style-type: none;
-        }
-        
-        .social ul li {
-            transition: 1s;
-            margin-right: 20px;
-        }
-        /* .social ul li:first-child:hover {
-    color: white;
-    font-size: larger;
+* {
+  margin: 0;
+  padding: 0;
 }
-
-.social ul li:nth-child(2):hover {
-    color: red;
-    font-size: larger;
-}
-
-.social ul li:nth-child(3):hover {
-    color: blue;
-    font-size: larger;
+/* body {
+  background-color: rgb(69, 112, 192);
+  height: 100vh;
+  width: 100% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 } */
-        
-        .field-icon {
-            margin-top: -50px;
-            z-index: 2;
-        }
-        
-        .loginForm:first-child {
-            color: white;
-        }
-        /* Updates */
-        
-        .logo {
-            margin-top: 100px;
-            /* margin-top: 200px;
-    margin-bottom: -50px; */
-        }
-        
-        .logoforget {
-            margin-top: -100px;
-        }
-        
-        .Eye {
-            position: absolute;
-            bottom: 38px;
-            left: 300px;
-        }
-        
-        .Eye:hover {
-            cursor: pointer;
-            color: gray;
-        }
-        
-        .link {
-            color: white;
-            text-align: center;
-        }
-        
-        .link:hover {
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.767);
-        }
-        
-        .textInput small {
-            color: var(--error-color);
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            visibility: hidden;
-        }
-        
-        .form-control.error small {
-            visibility: visible;
-        }
-        /* .btnFacebook {
-            width: 165px;
-            height: px; 
-             border-radius: 4px;
-            background: #3b5998;
-            color: white;
-            border: 0px transparent;
-            text-align: center;
-            margin: 5px;
-            display: inline-block;
-        }
-        
-        .btnFacebook:hover {
-            background: #3b5998;
-            color: black;
-        } */
+
+.App {
+  text-align: center;
+  height: 100vh;
+  display: grid;
+}
+
+/* .App-logo {
+    height: 40vmin;
+    pointer-events: none;
+  } */
+.containme {
+  background-color: #ccc;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+
+  width: 50%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  /* background-color: #FFF; */
+  /* border-radius: 15px; */
+  /* color: #000; */
+  /* justify-content: center; */
+  /* margin: 20px 0; */
+  margin: auto;
+}
+.active,
+.containme:hover {
+  background-color: #ccc;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.percentage {
+  /* padding: 0 18px; */
+  display: none;
+  /* overflow: hidden; */
+  background-color: #f1f1f1;
+}
+/* .containme{
+    background-color: rgb(24, 19, 19);
+    color: #fff;
+    padding:0 20px;
+    border-radius: 15px;
+    margin: 10px;
+    
+  }
+  .percentage{
+    height: 14px  !important;
+    width: 20%;
+  } */
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.SymptomsInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Login {
+  position: absolute;
+  top: 50%;
+  transition: 0.5s;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  margin: auto;
+  /* height: 100vh; */
+  min-height: 100vh;
+  /* width: 70vh; */
+  padding: 10rem;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 5px 5px 35px blue;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 120, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+.Diagnosis {
+  /* position: absolute;
+  top: 50%;
+  transition: 0.5s;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 400px;
+  overflow: auto; */
+  /* display: flex; */
+  margin: auto;
+  /* height: 100vh; */
+  min-height: 150px;
+  width: 80%;
+  padding: 10rem;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 5px 5px 35px blue;
+  /* background: rgb(2, 0, 36); */
+  background: linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 120, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+.textInput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.textInput input {
+  transition: 0.3s;
+  margin: 2rem;
+  font-size: large;
+  border: 1px solid rgba(9, 120, 121, 1);
+  border-radius: 5px;
+  padding: 5px;
+  width: 100%;
+  color: rgb(59, 58, 58);
+}
+
+.textInput input:focus {
+  color: red;
+  background-color: aqua;
+  color: gray;
+  padding: 10px;
+}
+
+.btn,
+.btnModel {
+  transition: 1s !important;
+  padding: 0;
+  margin-top: 1rem;
+  text-decoration: none !important;
+  border: none !important;
+  color: white !important;
+  background: none !important;
+  /* background-color: #002e44; */
+}
+
+.btn:hover,
+.btnModel:hover {
+  cursor: pointer;
+  color: black !important;
+  padding: 10px;
+  border-radius: 7px;
+  background: white !important;
+}
+.btnModel {
+  color: black !important;
+}
+.quetionModel {
+  background-color: white !important;
+}
+.btnModel:hover {
+  /* color: white !important;
+    background: black!important; */
+  color: white !important;
+  background: #002e44 !important;
+}
+.btnchoices {
+  color: white !important;
+  background: #002e44 !important;
+}
+.btnchoices:hover {
+  color: #002e44 !important;
+  border: 1px solid #002e44 !important;
+}
+
+.loginFormbuttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.social {
+  margin-top: 20px;
+}
+
+.social ul {
+  display: flex;
+  list-style-type: none;
+}
+
+.social ul li {
+  transition: 1s;
+  margin-right: 20px;
+}
