@@ -1,212 +1,714 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-/* body {
-  background-color: rgb(69, 112, 192);
-  height: 100vh;
-  width: 100% !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+ @import url('https://fonts.googleapis.com/css2?family=Festive&family=Lobster&display=swap');
+ * {
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+     box-sizing: border-box;
+     /* past Result  page */
+     margin: 0;
+     padding: 0;
+ }
+ /* Body */
+ 
+ :root {
+     --success-color: #2ecc71;
+     --error-color: #e74c3c;
+ }
+ 
+ a {
+     text-decoration: none;
+     color: inherit;
+ }
+ /* 
+html body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(240, 235, 235);
 } */
-
-.App {
-  text-align: center;
-  height: 100vh;
-  display: grid;
-}
-
-/* .App-logo {
-    height: 40vmin;
-    pointer-events: none;
-  } */
-.containme {
-  background-color: #ccc;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-
-  width: 50%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-  /* background-color: #FFF; */
-  /* border-radius: 15px; */
-  /* color: #000; */
-  /* justify-content: center; */
-  /* margin: 20px 0; */
-  margin: auto;
-}
-.active,
-.containme:hover {
-  background-color: #ccc;
-}
-
-/* Style the collapsible content. Note: hidden by default */
-.percentage {
-  /* padding: 0 18px; */
-  display: none;
-  /* overflow: hidden; */
-  background-color: #f1f1f1;
-}
-/* .containme{
-    background-color: rgb(24, 19, 19);
-    color: #fff;
-    padding:0 20px;
-    border-radius: 15px;
-    margin: 10px;
-    
-  }
-  .percentage{
-    height: 14px  !important;
-    width: 20%;
-  } */
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.SymptomsInput {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.Login {
-  position: absolute;
-  top: 50%;
-  transition: 0.5s;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  margin: auto;
-  /* height: 100vh; */
-  min-height: 100vh;
-  /* width: 70vh; */
-  padding: 10rem;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  box-shadow: 5px 5px 35px blue;
-  background: rgb(2, 0, 36);
-  background: linear-gradient(
-    180deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 120, 121, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  );
-}
-.Diagnosis {
-  /* position: absolute;
-  top: 50%;
-  transition: 0.5s;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 400px;
-  overflow: auto; */
-  /* display: flex; */
-  margin: auto;
-  /* height: 100vh; */
-  min-height: 150px;
-  width: 80%;
-  padding: 10rem;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  box-shadow: 5px 5px 35px blue;
-  /* background: rgb(2, 0, 36); */
-  background: linear-gradient(
-    180deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 120, 121, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  );
-}
-
-.textInput {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-}
-
-.textInput input {
-  transition: 0.3s;
-  margin: 2rem;
-  font-size: large;
-  border: 1px solid rgba(9, 120, 121, 1);
-  border-radius: 5px;
-  padding: 5px;
-  width: 100%;
-  color: rgb(59, 58, 58);
-}
-
-.textInput input:focus {
-  color: red;
-  background-color: aqua;
-  color: gray;
-  padding: 10px;
-}
-
-.btn,
-.btnModel {
-  transition: 1s !important;
+ /* End Body */
+ /* Custom Scroll Bar */
+ 
+ ::-webkit-scrollbar {
+     width: 0;
+     /* width: 10px;
+   */
+ }
+ 
+ ::-webkit-scrollbar-thumb {
+     background: darkslateblue;
+     border-radius: 10px;
+ }
+ 
+ ::-webkit-scrollbar-thumb:hover {
+     background: rgb(95, 82, 180);
+ }
+ /* End Custom Scroll Bar */
+ 
+ .center {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+ 
+ .mt-rem-5 {
+     margin-top: 5rem;
+ }
+ 
+ body h1:first-child {
+     text-align: center;
+ }
+ 
+ body h3 {
+     text-align: center;
+     width: 280px;
+ }
+ /*  */
+ 
+ .mainBack {
+     /* min-height: 620px; */
+     width: 100%;
+     min-height: 100vh;
+     height: 100%;
+     /* background: rgb(2, 0, 36);
+      background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(9, 120, 121, 1) 35%, rgba(0, 212, 255, 1) 100%); */
+     background: url(./background/background3.jpg);
+     background-repeat: no-repeat;
+     background-size: cover;
+ }
+ 
+ .loginForm {
+     position: absolute;
+     top: 50%;
+     transition: 0.5s;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     display: flex;
+     margin: auto;
+     min-height: 100vh;
+     padding: 10rem;
+     flex-direction: column;
+     justify-content: space-around;
+     align-items: center;
+     box-shadow: 5px 5px 35px blue;
+     background: rgb(2, 0, 36);
+     background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(9, 120, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+ }
+ /* TextInput */
+ 
+ .textInput {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     position: relative;
+ }
+ 
+ .textInput input {
+     transition: 0.3s;
+     margin: 2rem;
+     font-size: large;
+     border: 1px solid rgba(9, 120, 121, 1);
+     border-radius: 5px;
+     padding: 5px;
+     width: 100%;
+     color: rgb(59, 58, 58);
+ }
+ 
+ .textInput input:focus {
+     color: gray;
+     padding: 10px;
+ }
+ /* End TextInput */
+ /* Main Buttons */
+ 
+ .btn {
+     transition: 1s !important;
+     padding: 0;
+     margin-top: 1rem;
+     text-decoration: none;
+     border: none;
+     background: none!important;
+ }
+ 
+ .btn:hover {
+     cursor: pointer;
+     color: black;
+     padding: 10px;
+     border-radius: 7px;
+     background: white!important;
+ }
+ 
+ .loginFormbuttons {
+     display: flex;
+     flex-direction: column;
+ }
+ /* End Main Buttons */
+ 
+ .social {
+     margin-top: 20px;
+ }
+ 
+ .social ul {
+     display: flex;
+     list-style-type: none;
+ }
+ 
+ .social ul li {
+     transition: 1s;
+     margin-right: 20px;
+ }
+ 
+ .field-icon {
+     margin-top: -50px;
+     z-index: 2;
+ }
+ 
+ .loginForm:first-child {
+     color: white;
+ }
+ 
+ .link {
+     color: white;
+     text-align: center;
+ }
+ 
+ .link:hover {
+     text-decoration: none;
+     color: rgba(255, 255, 255, 0.767);
+ }
+ 
+ .textInput small {
+     color: var(--error-color);
+     position: absolute;
+     bottom: 0;
+     left: 0;
+     visibility: hidden;
+ }
+ 
+ .form-control.error small {
+     visibility: visible;
+ }
+ /* Logo */
+ 
+ .logo {
+     margin-top: 100px;
+ }
+ 
+ .logoforget {
+     margin-top: -100px;
+ }
+ /* logo */
+ /* Eye Design */
+ 
+ .Eye {
+     position: absolute;
+     bottom: 38px;
+     left: 300px;
+ }
+ 
+ span.EyeReg {
+     position: absolute;
+     bottom: 38px;
+     left: 300px;
+     /* display: flex; */
+ }
+ 
+ .EyeReg:hover {
+     cursor: pointer;
+     color: gray;
+ }
+ 
+ .Eye:hover {
+     cursor: pointer;
+     color: gray;
+ }
+ /* End Eye Design */
+ /* End Main Design */
+ /* Diagnosis Design */
+ /* .Button {
+  transition: 0.66s;
   padding: 0;
   margin-top: 1rem;
-  text-decoration: none !important;
-  border: none !important;
-  color: white !important;
-  background: none !important;
-  /* background-color: #002e44; */
+  text-decoration: none;
+  border: none;
+  background: rgb(60, 60, 231)!important;
 }
 
-.btn:hover,
-.btnModel:hover {
+.Button:hover {
   cursor: pointer;
-  color: black !important;
+  color: black;
   padding: 10px;
   border-radius: 7px;
-  background: white !important;
-}
-.btnModel {
-  color: black !important;
-}
-.quetionModel {
-  background-color: white !important;
-}
-.btnModel:hover {
-  /* color: white !important;
-    background: black!important; */
-  color: white !important;
-  background: #002e44 !important;
-}
-.btnchoices {
-  color: white !important;
-  background: #002e44 !important;
-}
-.btnchoices:hover {
-  color: #002e44 !important;
-  border: 1px solid #002e44 !important;
-}
-
-.loginFormbuttons {
-  display: flex;
-  flex-direction: column;
-}
-
-.social {
-  margin-top: 20px;
-}
-
-.social ul {
-  display: flex;
-  list-style-type: none;
-}
-
-.social ul li {
-  transition: 1s;
-  margin-right: 20px;
-}
+  background: white!important;
+} */
+ /* Buttons Design  */
+ 
+ .btn-main {
+     display: flex;
+     align-items: center;
+     padding: 0;
+     margin-bottom: 1rem;
+     text-decoration: none;
+     color: white!important;
+     background: none!important;
+ }
+ 
+ .btn-main:hover {
+     cursor: pointer;
+     color: black!important;
+     background: white!important;
+ }
+ 
+ .btn-sec {
+     display: block !important;
+     margin: auto;
+     margin-bottom: 1rem;
+     padding: 0;
+     width: 40%;
+     text-decoration: none;
+     color: white!important;
+     background: none!important;
+ }
+ 
+ .btn-sec:hover {
+     cursor: pointer;
+     color: black!important;
+     background: white!important;
+ }
+ 
+ .btn-primary {
+     display: inline;
+     width: 65%;
+     transition: 0.66s;
+     text-decoration: none;
+     border: none;
+     color: black!important;
+     background: #0275d8!important;
+ }
+ 
+ .btn-primary:hover {
+     cursor: pointer;
+     padding: 10px;
+     border-radius: 7px;
+     color: white!important;
+     background: #0269c4!important;
+ }
+ 
+ .btn-mBody {
+     display: inline;
+     width: 100%;
+     text-decoration: none;
+     border: none;
+     color: black!important;
+     overflow-wrap: break-word;
+     background: none!important;
+ }
+ 
+ .btn-mBody:hover {
+     cursor: pointer;
+     padding: 10px;
+     border-radius: 7px;
+     color: white!important;
+     background: #002e44!important;
+ }
+ 
+ .btn-secondary {
+     display: inline;
+     width: 30%;
+     float: left;
+     transition: 0.66s;
+     text-decoration: none;
+     border: none;
+     color: black!important;
+     background: #9ab6cc!important;
+ }
+ 
+ .btn-secondary:hover {
+     cursor: pointer;
+     padding: 10px;
+     border-radius: 7px;
+     color: white!important;
+     background: #657885!important;
+ }
+ /* End of Button Design */
+ /* List chosen symptoms */
+ 
+ ul.wrapper {
+     /* ul { */
+     max-height: 180px !important;
+     overflow-y: auto !important;
+ }
+ 
+ li.SymList {
+     /* li { */
+     list-style: none !important;
+     background: #fff !important;
+     justify-content: center !important;
+     color: black !important;
+     line-height: 2em !important;
+     padding: 10px !important;
+     overflow: hidden !important;
+     width: 60% !important;
+     margin: auto !important;
+     margin-top: 10px !important;
+     border: 0.2px solid white !important;
+     border-radius: 10px !important;
+     text-align: center !important;
+     animation: fadeIn 0.5s linear !important;
+     animation-fill-mode: both !important;
+     transition: 1s !important;
+ }
+ 
+ li.SymList:hover {
+     /* li:hover { */
+     /* background: rgb(153, 153, 153); */
+     /* color: white; */
+     /* background: #5bc0de; */
+     background: rgb(225, 225, 236) !important;
+     transition: 0.5s !important;
+     border: 0.2px solid rgb(225, 225, 236) !important;
+     border: 0.2px solid rgb(8, 1, 128) !important;
+ }
+ 
+ @-webkit-keyframes fadeIn {
+     0% {
+         opacity: 0;
+         top: 100px;
+     }
+     75% {
+         opacity: 0.5;
+         top: 0px;
+     }
+     100% {
+         opacity: 1;
+     }
+ }
+ 
+ .faIcon {
+     color: black;
+     cursor: pointer;
+ }
+ 
+ .faIcon:hover {
+     color: red;
+ }
+ /* End List chosen symptoms */
+ /* SymptomsList show animation */
+ 
+ @keyframes fadeIn {
+     0% {
+         opacity: 0;
+         transform: translateY(2rem);
+     }
+     100% {
+         opacity: 1;
+         transform: translateY(0);
+     }
+ }
+ 
+ .menu {
+     animation: fadeIn 0.2s ease-in-out;
+ }
+ 
+ @keyframes fadeOut {
+     0% {
+         opacity: 1;
+         transform: translateY(0);
+     }
+     100% {
+         opacity: 0;
+         transform: translateY(2rem);
+     }
+ }
+ 
+ .menu--close {
+     animation: fadeOut 0.2s ease-in-out;
+ }
+ /* End of SymptomsList show animation */
+ /* Modal Style */
+ /* HypokinesiaAkinesia */
+ 
+ .modalstyle {
+     width: 100VW;
+     /* height: 1000px; */
+ }
+ 
+ .headerStyle {
+     background: #0275d8;
+     color: white;
+ }
+ 
+ .headerStyle .h4 {
+     font-size: medium !important;
+ }
+ /* 
+.bodyStyle {
+  border: 5px solid rgb(153, 153, 153);
+  border-radius: 20px;
+  /* width: auto; */
+ /* word-wrap: break-word; */
+ 
+ .titleStyle {
+     border-bottom: 1px solid rgb(153, 153, 153);
+ }
+ /* End of Modal style */
+ 
+ .logoDiagnosis {
+     /* display: flex;
+      margin-left: 10px;
+      padding: 2rem; */
+     /* flex-direction: column; */
+     /* justify-content: center;
+      align-items: center; */
+     /* width: 2px;
+      height: 2px; */
+     /* border: 10 rosybrown solid;
+      background-color: rosybrown; */
+     /* position: absolute;
+      top: 0;
+      right: 20px; */
+     width: 100%;
+     position: relative;
+ }
+ 
+ .logoDiag {
+     width: 40% !important;
+     position: relative;
+     left: 30%;
+ }
+ /* Results past Result  page  */
+ /*  
+ .RRbody * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+ 
+ .RRbody {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     min-height: 100vh;
+     background-color: #03a9f4!important;
+ }
+ 
+ .RRContainer {
+     padding: 40px;
+     margin: 10px;
+     background: rgb(221, 224, 226);
+     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+     border-radius: 10px;
+ }
+ 
+ .HPargh h1 {
+     font-family: 'Festive', cursive;
+     font-family: 'Lobster', cursive;
+     margin-bottom: 10px!important;
+     display: inline-block;
+     font-weight: 500;
+     border-bottom: 2px solid #182b3c;
+ }
+ 
+ .RRContainer ul {
+     position: relative;
+ }
+ 
+ .RRContainer ul li {
+     position: relative;
+     list-style: none;
+     display: table;
+     margin: 10px 0;
+     padding-left: 34px;
+     padding-right: 5px;
+ }
+ 
+ .showlist {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 34px;
+     height: 34px;
+     background: transparent!important;
+     transition: background 0.5s, width 0.5s !important;
+     transition-delay: 0.5s, 0s !important;
+     border-radius: 34px !important;
+     border: 2px solid #03a9f4 !important;
+     box-sizing: border-box;
+ }
+ 
+ .showlist::after {
+     content: '';
+     position: absolute;
+     top: 13px;
+     left: 12px;
+     width: 6px;
+     height: 6px;
+     border-top: 2px solid #000000;
+     border-right: 2px solid #000000;
+     transform: rotate(45deg);
+     transition: 0.5s !important;
+     transition-delay: 0s !important;
+ }
+ 
+ .showlist:hover {
+     width: 100%;
+     background: #03a9f4 !important;
+     transition-delay: 0s, 0s !important;
+ }
+ 
+ .showlist:hover::after {
+     left: 24px;
+     transition-delay: 0s !important;
+     transform: rotate(45deg) scale(1.5);
+ }
+ 
+ p .Datepargh {
+     position: relative;
+     z-index: 10;
+     padding: 5px 10px;
+     color: rgb(0, 0, 0);
+ }
+ 
+ .ResultLi {
+     position: relative;
+     margin-bottom: 30px !important;
+     padding-bottom: 10px !important;
+     font-size: 21px;
+     width: 100%;
+     border-bottom: 2px solid #03a9f4 !important;
+     opacity: 0;
+     animation: fadeIn 1.5s ease-in both;
+ }
+ 
+ @keyframes fadeIn {
+     from {
+         opacity: 0;
+         transform: translate3d(0, -20%, 0);
+     }
+     to {
+         opacity: 1;
+         transform: translate3d(0, 0, 0);
+     }
+ }
+ 
+ .ProgPar {
+     position: absolute;
+     bottom: 45px;
+     right: 20px;
+     width: 15% !important;
+     height: 15% !important;
+ } */
+ /* End past Result  page */
+ 
+ .RRbody {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     min-height: 100vh;
+     /* background-color: #03a9f4!important; */
+ }
+ 
+ .RRContainer {
+     padding: 40px;
+     margin: 10px;
+     background: rgb(221, 224, 226);
+     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+     border-radius: 10px;
+ }
+ 
+ h1 {
+     font-family: 'Festive', cursive;
+     font-family: 'Lobster', cursive;
+     margin-bottom: 10px!important;
+     display: inline-block;
+     font-weight: 500;
+     border-bottom: 2px solid #182b3c;
+ }
+ 
+ .RRContainer ul {
+     position: relative;
+ }
+ 
+ .RRContainer ul li {
+     position: relative;
+     list-style: none;
+     display: table;
+     margin: 10px 0;
+     padding-left: 34px;
+     padding-right: 5px;
+ }
+ 
+ .showlist {
+     position: absolute;
+     top: -15px !important;
+     /* bottom: 15px !important; */
+     left: 0;
+     width: 34px;
+     height: 34px;
+     background: transparent!important;
+     transition: background 0.5s, width 0.5s !important;
+     transition-delay: 0.5s, 0s !important;
+     border-radius: 34px !important;
+     border: 2px solid #03a9f4 !important;
+     box-sizing: border-box;
+ }
+ 
+ .showlist::after {
+     content: '';
+     position: absolute;
+     top: 13px;
+     left: 12px;
+     width: 6px;
+     height: 6px;
+     border-top: 2px solid #000000;
+     border-right: 2px solid #000000;
+     transform: rotate(45deg);
+     transition: 0.5s !important;
+     transition-delay: 0s !important;
+ }
+ 
+ .showlist:hover {
+     width: 100%;
+     background: #03a9f4 !important;
+     transition-delay: 0s, 0s !important;
+ }
+ 
+ .showlist:hover::after {
+     left: 24px;
+     transition-delay: 0s !important;
+     transform: rotate(45deg) scale(1.5);
+ }
+ 
+ .Datepargh {
+     position: relative;
+     z-index: 10;
+     padding: 5px 10px;
+     color: rgb(0, 0, 0);
+ }
+ 
+ .ResultLi {
+     position: relative;
+     margin-bottom: 30px !important;
+     padding-bottom: 10px !important;
+     font-size: 21px;
+     width: 100%;
+     border-bottom: 2px solid #03a9f4 !important;
+     opacity: 0;
+     animation: fadeIn 1.5s ease-in both;
+ }
+ 
+ @keyframes fadeIn {
+     from {
+         opacity: 0;
+         transform: translate3d(0, -20%, 0);
+     }
+     to {
+         opacity: 1;
+         transform: translate3d(0, 0, 0);
+     }
+ }
+ 
+ .ProgPar {
+     position: absolute;
+     bottom: 45px;
+     right: 20px;
+     width: 15% !important;
+     height: 15% !important;
+ }

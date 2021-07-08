@@ -1,4 +1,3 @@
-# A Simple form that asks for disease symptoms and sends them to EndlessMedicalAPI for diagnostic features (Still in Development)
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

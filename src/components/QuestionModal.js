@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import { v4 as uuidv4 } from 'uuid';
-import "../App.css"
+import '../App.css';
+
 class QuestionModal extends Component {
 
     constructor(props) {
@@ -15,10 +16,11 @@ class QuestionModal extends Component {
         }
         this.wrapper = React.createRef()
     }
-    handleInputChange = (e) => {
-        this.setState({
+    handleInputChange = async (e) => {
+        await this.setState({
             inputValue: e.target.value
         })
+
     }
     handleClick = async (value, choiceDescription) => {
         await this.setState({
@@ -33,17 +35,18 @@ class QuestionModal extends Component {
 
     handleSave = async () => {
         await this.setState({
-            nameValueSetToSearch: [...this.state.nameValueSetToSearch, { itemName: this.props.item.name, itemValue: this.state.inputValue, itemDescription: this.state.choiceDescription, itemId: uuidv4() }],
+            nameValueSetToSearch: { itemName: this.props.item.name, itemValue: this.state.inputValue, itemDescription: this.state.choiceDescription, itemId: uuidv4() },
             show: false,
             inputValue: '',
             choiceDescription: ''
         })
-        let arr = this.state.nameValueSetToSearch;
-        this.props.getDataArray(arr)
+        let arrItem = this.state.nameValueSetToSearch;
+        this.props.getDataArray(arrItem)
 
     }
 
     render() {
+        // console.log(this.state.nameValueSetToSearch);
 
 
         const handleClose = () => { this.setState({ show: false, inputValue: '' }) }
@@ -53,23 +56,32 @@ class QuestionModal extends Component {
         const item = this.props.item
 
         return (
-            <div  ref={this.wrapper}>
-                <Button className="btn" variant="primary" onClick={handleShow}>Question About {item.name}</Button>
+            <div className="center" ref={this.wrapper}>
+                <Button variant="main" onClick={handleShow}>Question About {item.name}</Button>
 
-                <Modal  animation={false} show={this.state.show} onHide={handleClose}>
-                    <Modal.Header className="quetionModel" closeButton>
+                <Modal
+                    animation={false} show={this.state.show} onHide={handleClose}
+                    contentClassName="modalstyle">
+                    <Modal.Header
+
+                        style={{ fontSize: 10 }} closeButton className="headerStyle" >
                         <Modal.Title>{item.name}</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body className="quetionModel"><>{item.laytext}</> <br /> {item.hasOwnProperty('choices') ?
-                        item.choices.map(choice => <Button className="btnchoices" key={uuidv4()} onClick={() => { this.handleClick(choice.value, choice.laytext) }}>{choice.laytext}</Button>) : <input onChange={this.handleInputChange} value={this.state.inputValue} type='number' placeholder={item.min + " to " + item.max} />}</Modal.Body>
-                    <Modal.Footer className="quetionModel">
-                        <Button className="btnModel" variant="secondary" onClick={handleClose}>
+                    <Modal.Body className="bodyStyle">
+                        <div
+                            className="titleStyle">{item.laytext}</div>
+                        <br /> {item.hasOwnProperty('choices') ?
+                            item.choices.map(choice => <Button
+                                style={{ whiteSpace: 'unset' }}
+                                variant="mBody" key={uuidv4()} onClick={() => { this.handleClick(choice.value, choice.laytext) }}>{choice.laytext}</Button>) : <input onChange={this.handleInputChange} value={this.state.inputValue} type='number' placeholder={item.min + " to " + item.max} />}</Modal.Body>
+                    <Modal.Footer >
+                        <Button variant="secondary " onClick={handleClose}>
                             Close
-                        </Button>
-                        <Button className="btnModel" variant="primary" onClick={this.handleSave}>
+                    </Button>
+                        <Button variant="primary" onClick={this.handleSave}>
                             Save
-                        </Button>
-                    </Modal.Footer >
+                    </Button>
+                    </Modal.Footer>
                 </Modal>
             </div>
         );

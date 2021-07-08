@@ -1,18 +1,23 @@
 import '../App.css';
-import React, { Component } from 'react'
-import axios from 'axios'
+import React, { Component } from 'react';
+import axios from 'axios';
 // import { TextField } from '@material-ui/core';
 // import { Autocomplete } from '@material-ui/lab';
-import features from './SymptomsOutput.json'
-import SymptomsToTestList from './SymptomsToTestList'
+import features from './SymptomsOutput.json';
+import SymptomsToTestList from './SymptomsToTestList';
 // import { v4 as uuidv4 } from 'uuid';
-import DiseasesList from './DiseasesList'
-import Select from 'react-select'
-import SymptomsList from './SymptomsList'
-import QuestionModal from './QuestionModal'
+import DiseasesList from './DiseasesList';
+import Select, { components } from 'react-select';
+import SymptomsList from './SymptomsList';
+import QuestionModal from './QuestionModal';
 // import { v4 as uuidv4 } from 'uuid';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
+// import { Redirect } from 'react-router';
 import {
-    Container, Button
+    Container
+    // , Button
     // Card, CardBody,
     // CardTitle, Button, Container,
     // Row, Col, ButtonGroup, Input,
@@ -63,7 +68,9 @@ class Diagnosis extends Component {
     //   return { textArr: featureTextArr, layText: featureLayTextArr, nameArr: featureNameArr, typeArr: featureTypeArr, defaultArr: featureDefaultArr }
     // }
 
+
     render() {
+
         // console.log(this.state.dataArr);
         this.sendFeaturesData = async () => {
             //Sends Collected Symptoms to the API and logs Ok for each successfully sent symptom
@@ -75,7 +82,7 @@ class Diagnosis extends Component {
 
         this.analyze = async () => {
             await axios.get(`http://api.endlessmedical.com/v1/dx/Analyze?SessionID=${this.state.sessionId}`).then(res => this.setState({ DiseasesResult: res.data.Diseases }))
-            // console.log(await axios.get(`http://api.endlessmedical.com/v1/dx/Analyze?SessionID=${this.state.sessionId}`));
+
         }
 
         this.handleGetAdditionalTests = async () => {
@@ -131,21 +138,58 @@ class Diagnosis extends Component {
             window.location.reload();
         }
 
+        const uniqueId = "select_" + Math.random().toFixed(5).slice(2);
         return (
-            <div className="Diagnosis">
-                <h1>Please Tell Diagnostica more medical info about you.</h1>
-                <Container className='Diagnosis'>
-                    <Select placeholder="Select from the following values ..." options={this.state.valuedFeatures} value={this.state.selectedFeature} onChange={this.handleChange} />
-                    {this.state.selectedFeature && <QuestionModal buttonLabel="Ask" item={this.state.selectedFeature} getDataArray={this.getDataArray} />}
-                    {this.state.dataArr && <SymptomsList handleDelete={this.handleDelete} dataArray={this.state.dataArr} />}
-                    {this.state.dataArr[0] && <Button onClick={this.sendFeaturesData}>Send Current Details</Button>}
-                    {this.state.dataSentFlag && <Button onClick={this.handleGetAdditionalTests}>Get Additional Tests</Button>}
-                    {this.state.suggestedFeaturesToAsk && <SymptomsToTestList suggestedFeatures={this.state.suggestedFeaturesToAsk} />}
-                    {this.state.dataSentFlag && <Button onClick={this.analyze}>Analyze</Button>}
-                    {this.state.DiseasesResult && <DiseasesList diseasesList={this.state.DiseasesResult} />}
-                    {this.state.DiseasesResult && this.state.suggestedFeaturesToAsk && this.state.dataSentFlag && <Button onClick={this.reset}>Reset</Button>}
-                </Container>
-            </div >
+            <div className="mainBack" >
+                <div className="container" >
+                    <div className="Diagnosis">
+                        <div className='logoDiagnosis'>
+                            <img className="logoDiag" src={`/logoDignosis/logo18.png`} />
+                        </div>
+                        <Container className='Diagnosis '>
+                            {/* <img src={`/logoDignosis/logo18.png`} /> */}
+                            <Select
+                                id={uniqueId}
+                                placeholder="Select from the following values ..." options={this.state.valuedFeatures} value={this.state.selectedFeature} onChange={this.handleChange}
+                                components={{
+                                    Menu: (props) => <components.Menu {...props} className="menu" />,
+                                    DropdownIndicator: () => null, IndicatorSeparator: () => null
+                                }}
+                                onMenuClose={() => {
+                                    const menuEl = document.querySelector(`#${uniqueId} .menu`);
+                                    const containerEl = menuEl?.parentElement;
+                                    const clonedMenuEl = menuEl?.cloneNode(true);
+
+                                    if (!clonedMenuEl) return;
+
+                                    clonedMenuEl.classList.add("menu--close");
+                                    clonedMenuEl.addEventListener("animationend", () => {
+                                        containerEl?.removeChild(clonedMenuEl);
+                                    });
+
+                                    containerEl.appendChild(clonedMenuEl);
+                                }}
+                            />
+                            {this.state.selectedFeature && <QuestionModal buttonLabel="Ask" item={this.state.selectedFeature} getDataArray={this.getDataArray} />}
+                            {this.state.dataArr && <SymptomsList handleDelete={this.handleDelete} dataArray={this.state.dataArr} />}
+                            {this.state.dataArr[0] && <Button variant="sec " onClick={this.sendFeaturesData} >Send Current Details</Button>}
+                            {this.state.dataSentFlag && <Button variant="sec " onClick={this.handleGetAdditionalTests}>Get Additional Tests</Button>}
+                            {this.state.suggestedFeaturesToAsk && <SymptomsToTestList suggestedFeatures={this.state.suggestedFeaturesToAsk} />}
+
+                            {this.state.dataSentFlag && <Button variant="sec " onClick={this.analyze}>Analyze</Button>}
+
+
+                            {this.state.DiseasesResult && <DiseasesList variant="sec " diseasesList={this.state.DiseasesResult} />}
+
+
+
+                            {this.state.DiseasesResult && this.state.suggestedFeaturesToAsk && this.state.dataSentFlag && <Button variant="sec " onClick={this.reset}>Reset</Button>}
+
+
+                        </Container>
+                    </div>
+                </div>
+            </div>
         )
     }
 }

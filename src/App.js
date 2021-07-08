@@ -1,76 +1,53 @@
-import React, { Component } from "react";
-import Diagnosis from "./components/DiagnosisMain";
-import Login from "./components/Login";
-import "./App.css";
-import Registration from "./components/Registration";
-import Loading from "./components/Loading";
-import { withRouter } from "react-router";
-
+import React, { Component, Fragment } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link,
-  Redirect,
-} from "react-router-dom";
-import { Nav } from "react-bootstrap";
-// import { AlertProvider } from "react-alerts-plus";
+  useHistory
+} from 'react-router-dom';
+// import { Redirect } from 'react-router';
+import Diagnosis from './components/Diagnosis';
+import Login from './components/Login';
+import './App.css';
+import Registration from './components/Registration';
+import RecordedResults from './components/RecordedResults';
 
+// import Loading from './components/Loading';
+
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 export default class App extends Component {
   state = {
-    userToken: "",
+    userToken: '',
     userData: [],
-    loading: true,
-    userToken: [],
-    logoutStatus: false,
-  };
-  componentDidMount() {
-    let TokenData = JSON.parse(localStorage.getItem("userData"));
-    this.setState({ loading: false });
-    if (TokenData) this.setState({ userToken: TokenData });
+    loading: true
   }
-  saveTokenToLS = (userToken) => {
-    this.setState({ userToken });
-    console.log(this.state.userToken);
-    localStorage.setItem("userData", JSON.stringify(userToken));
-  };
-  handleLogout = () => {
-    this.setState({ userToken: [], logoutStatus: true });
-    localStorage.removeItem("userData");
-  };
-  render() {
-    console.log(this.state.userToken.length > 0);
+  componentDidMount() {
+    this.setState({ loading: false })
+  }
 
+  render() {
     return (
       <Router>
         <div className='center .mt-rem-5'>
-          {this.state.logoutStatus && <Redirect to='/' />}
-          {this.state.userToken.length > 0 && <Redirect to='/Diagnosis' />}
+          {/* {this.state.loading && <Loading type={'spin'} />}
+        {!localStorage.getItem("userToken") && <Login />} */}
 
-          {/* {console.log(this.state.result)}
-          {this.state.result.length > 0 && <Diagnosis />}
-          {this.state.loading && <Loading type={"spin"} />}
-          {!this.state.result.length > 0 && (
-            <Login getResult={(data) => this.getResult(data)} />
-          )} */}
+          {/* <Switch>
 
-          <Switch>
-            <Route exact path='/'>
-              <Login saveTokenToLS={this.saveTokenToLS} />
-            </Route>
-            <Route exact path='/Diagnosis'>
-              {this.state.userToken.length > 0 ? (
-                <Diagnosis Logout={this.handleLogout} />
-              ) : (
-                <Redirect to='/' />
-              )}
-            </Route>
-            <Route exact path='/Registration'>
-              <Registration />
-            </Route>
-          </Switch>
+           
+            <Route exact path='/' component={Diagnosis} />
+          </Switch> */}
+
+
+          <RecordedResults />
+          {/* <Diagnosis /> */}
+          {/* <Login /> */}
+          {/* <Registration /> */}
+
         </div>
       </Router>
-    );
+    )
   }
 }

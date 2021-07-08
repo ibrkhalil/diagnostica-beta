@@ -1,0 +1,104 @@
+{
+    "RecordedList": [{
+            "Rid": 1,
+            "ResultDate": "2012-09-23T18:25:43.511Z",
+            "Results": [{
+                    "id": 1,
+                    "DiseaseName": "Emergency",
+                    "percentages": 99
+                },
+                {
+                    "id": 2,
+                    "DiseaseName": "Qoura",
+                    "percentages": 80
+                },
+                {
+                    "id": 3,
+                    "DiseaseName": "Death",
+                    "percentages": 66
+                },
+                {
+                    "id": 4,
+                    "DiseaseName": "win",
+                    "percentages": 50
+                },
+                {
+                    "id": 5,
+                    "DiseaseName": "maybe",
+                    "percentages": 22.6
+                }
+
+
+
+            ]
+
+        },
+        {
+            "Rid": 2,
+            "ResultDate": "2013-09-23T18:25:43.511Z",
+            "Results": [{
+                    "id": 1,
+                    "DiseaseName": "Emergency",
+                    "percentages": 99
+                },
+                {
+                    "id": 2,
+                    "DiseaseName": "Qoura",
+                    "percentages": 80
+                },
+                {
+                    "id": 3,
+                    "DiseaseName": "Death",
+                    "percentages": 66
+                },
+                {
+                    "id": 4,
+                    "DiseaseName": "win",
+                    "percentages": 50
+                },
+                {
+                    "id": 5,
+                    "DiseaseName": "maybe",
+                    "percentages": 22.6
+                }
+
+
+
+            ]
+        },
+        {
+            "Rid": 3,
+            "ResultDate": "2021-09-23T18:25:43.511Z",
+            "Results": [{
+                    "id": 1,
+                    "DiseaseName": "Emergency",
+                    "percentages": 99
+                },
+                {
+                    "id": 2,
+                    "DiseaseName": "Qoura",
+                    "percentages": 80
+                },
+                {
+                    "id": 3,
+                    "DiseaseName": "Death",
+                    "percentages": 66
+                },
+                {
+                    "id": 4,
+                    "DiseaseName": "win",
+                    "percentages": 50
+                },
+                {
+                    "id": 5,
+                    "DiseaseName": "maybe",
+                    "percentages": 22.6
+                }
+
+
+
+            ]
+        }
+
+    ]
+}
